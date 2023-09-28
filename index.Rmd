@@ -1,6 +1,6 @@
 ---
 title: "Gov 50 Final Project"
-author: "Your Name Here"
+author: Dontae Christie
 description: "My final project"
 output:
   distill::distill_article:
@@ -11,4 +11,4 @@ output:
 
 ## Project thoughts
 
-I am interested in exploring data related to...
+I am interested in exploring data related to the chances of upward mobility from students in elite higher education universities, including Harvard University. I seek to include data relating to students socioeconomic status prior to arriving a college, and this can also raise more questions regarding the idea of a "higher bracket" in moving up the economic ladder in these prestigious universities. Are these students pressured to do more than their parents who are already well off? Are students identifying as first generational low income at an equal chance of high upward mobility than those who came from a family of generational wealth? I strive to solve all of these raising questions through using R and the data presented in the program.
