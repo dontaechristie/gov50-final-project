@@ -12,3 +12,15 @@ output:
 ## Project thoughts
 
 I am interested in exploring data related to the chances of upward mobility from students in elite higher education universities, including Harvard University. I seek to include data relating to students socioeconomic status prior to arriving a college, and this can also raise more questions regarding the idea of a "higher bracket" in moving up the economic ladder in these prestigious universities. Are these students pressured to do more than their parents who are already well off? Are students identifying as first generational low income at an equal chance of high upward mobility than those who came from a family of generational wealth? I strive to solve all of these raising questions through using R and the data presented in the program.
+
+
+Write-Up for Milestone 2
+
+Do your chances of upward mobility increase as the rank and tier of college rises in prestige? In this study, I intend to dive deep into the realm that determines a students outcome for social mobility. What does determine your economic outcome? I hypothesize that as we look further into the spectrum in which colleges become "more elite," we will find that their overall social mobility statistics will feature a distinct trend in which it stays stagnant due to many students already coming from wealthy backgrounds in the beginning. While the topic of social mobility between elite and lower tiered universities is widely perceived to be different, I will be taking a different approach in which I will examine whether a students chances within an elite college institution for upward mobility is higher than it would be in lower tiered universities. My sample will be comprised of elite colleges which will include the Ivy league colleges, Stanford University, and the Massachusetts Institute of Technology (MIT). On the flip side, it will include brief data on lower tiered state schools from around the country including Alabama State University, Florida National University, and Benedict College. My explanatory variable of interest is whether there is upward mobility in my chosen elite colleges or if there is little to no upward mobility. The variable is code = 1 for those experiencing upward mobility and =0 with those with little to no upward mobility. My outcome variable is how many students came out of elite universities with upward economic mobility, so in the event the code is =135, that would mean that 135 students came out of the universities with upward mobility. This variable will be measured by a data set from Raj Chetty on "Income Segregation and Intergenerational Mobility Across Colleges in the United States." If I discover stagnant numbers in students with little to no upward mobility in elite universities, this will support my hypothesis's claim. If, on the other hand, I observe more upward mobility in those elite groups, it will not support my claim in my hypothesis. When I run a diagnosis on the count of students who are experiencing upward mobility, a positive significant coeficient (number) would indicate support for my hypothesis.
+
+My chosen data set: https://doi.org/10.7910/DVN/RYLJKZ
+
+
+
+
+
