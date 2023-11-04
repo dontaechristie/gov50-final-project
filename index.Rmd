@@ -21,6 +21,71 @@ Do your chances of upward mobility increase as the rank and tier of college rise
 My chosen data set: https://doi.org/10.7910/DVN/RYLJKZ
 
 
+```{r}
+library(tidyverse)
+library(dplyr)
+statistics <- read.csv("~/Downloads/dataverse_files/mrc_table1.csv", header = FALSE) 
+  colnames(statistics) <- c("var1", "V2", "var3", "var4", "parent_median", "kid_median", "var7", "var8", "var9", "var10", "var11", "var12", "var13", "var14", "var15")
+```
+
+```{r}
+college_rank <- read.csv("~/Downloads/dataverse_files/mrc_table10.csv", header = FALSE)
+
+```
+```{r}
+library(plyr)
+
+df <- inner_join(college_rank, statistics, by = "V2") 
+
+
+
+```
+
+
+
+
+```{r}
+df$parent_median <- as.numeric(df$parent_median)
+
+df <- df|>
+  mutate(elite_college = if_else(V12 == "Ivy Plus", "Extremely Selective", "Not Extremely Selective"),
+         mean_parent_median = mean(parent_median,na.rm=T)) 
+
+first_graph <- ggplot(data = df, mapping = aes(x = elite_college,
+                                  y = parent_median)) +
+   geom_boxplot() 
+ first_graph
+
+
+
+```
+
+
+```{r}
+df$kid_median <- as.numeric(df$kid_median)
+df <- df|>
+  mutate(elite_college = if_else(V12 == "Ivy Plus", "Extremely Selective", "Not Extremely Selective"),
+         mean_kid_median = mean(kid_median,na.rm = TRUE)) 
+
+second_graph <- ggplot(data = df, mapping = aes(x = elite_college,
+                                  y = kid_median)) +
+   geom_boxplot()
+second_graph
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

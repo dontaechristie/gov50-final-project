@@ -1,0 +1,40 @@
+---
+title: "Lecture 13"
+output: html_document
+date: "2023-10-17"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(qss)
+data(minwage)
+minwage <- as_tibble(minwage)
+minwage
+```
+
+```{r}
+minwage |>
+  count(location)
+
+minwage <- minwage |>
+  mutate(
+    state = if_else(location == "PA", "PA", "NJ")
+  )
+minwage |>
+  count(state)
+```
+```{r}
+
+```
+
+
+### Cross Sectional Estimates
+
+
+
+
+
