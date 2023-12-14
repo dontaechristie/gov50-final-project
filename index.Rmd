@@ -1,7 +1,7 @@
 ---
 title: "Gov 50 Final Project"
 author: Dontae Christie
-description: "My final project"
+description: "Analyzing Whether A Selective College Means Upward Social Mobility"
 output:
   distill::distill_article:
     self_contained: false
@@ -23,6 +23,7 @@ My chosen data set: https://doi.org/10.7910/DVN/RYLJKZ
 library(tidyverse)
 library(plyr)
 library(dplyr)
+library(ggthemes)
 statistics <- read.csv("~/Downloads/dataverse_files/mrc_table1.csv", header = FALSE) 
   colnames(statistics) <- c("var1", "V2", "var3", "var4", "parent_median", "kid_median", "var7", "var8", "var9", "var10", "var11", "var12", "var13", "var14", "var15")
 ```
@@ -53,9 +54,9 @@ df <- df|>
 
 first_graph <- ggplot(data = df, mapping = aes(x = elite_college,
                                   y = parent_median)) +
-   geom_boxplot(color="pink", fill="lightblue") +
+   geom_boxplot(color="black", fill="lightgreen") +
   labs(x = "Extremely Selective vs. Not Extremely Selective",
-       y = "Median income of Parents")
+       y = "Median income of Parents") + theme_calc()
  first_graph
 
 
