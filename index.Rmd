@@ -84,7 +84,7 @@ second_graph <- ggplot(data = df, mapping = aes(x = elite_college,
        y = "Median Salary of Kids After College") + theme_calc()
 second_graph 
 
-df_pivoted <- df %>%
+df_pivoted <- df |>
   pivot_wider(names_from = elite_college, values_from = kid_median)
 
 # Fit linear models for each group
