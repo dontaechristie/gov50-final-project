@@ -1,6 +1,6 @@
 ---
 title: "Gov 50 Final Project"
-author: Dontae Christie
+author: Dontae R. Christie
 description: "Analyzing Whether A Selective College Means Upward Social Mobility"
 output:
   distill::distill_article:
@@ -15,6 +15,9 @@ Throughout my high school career, I have always been facinated at the idea of ex
 
 
 Do your chances of upward mobility increase as the rank and tier of college rises in prestige? In this study, I intend to dive deep into the realm that determines a students outcome for social mobility. What does determine your economic outcome? I hypothesize that as we look further into the spectrum in which colleges become "more elite," we will find that their overall social mobility statistics will feature a distinct trend in which it stays stagnant due to many students already coming from wealthy backgrounds in the beginning. While the topic of social mobility between elite and lower tiered universities is widely perceived to be different, I will be taking a different approach in which I will examine whether a students chances within an elite college institution for upward mobility is higher than it would be in lower tiered universities. My sample will be comprised of elite colleges which will include the Ivy league colleges, Stanford University, and the Massachusetts Institute of Technology (MIT) and other colleges deemed "extremely selective" according to the code. On the flip side, it will include brief data on lower tiered state schools from around the country that are deemed to be "Not Selective" according to the code. My explanatory variable of interest is whether there is upward mobility in my chosen elite colleges or if there is little to no upward mobility. The variable is code = 1 for those experiencing upward mobility and =0 with those with little to no upward mobility. My outcome variable is how many students came out of elite universities with upward economic mobility, so in the event the code is =135, that would mean that 135 students came out of the universities with upward mobility. This variable will be measured by a data set from Raj Chetty on "Income Segregation and Intergenerational Mobility Across Colleges in the United States." If I discover stagnant numbers in students with little to no upward mobility in elite universities, this will support my hypothesis's claim. If, on the other hand, I observe more upward mobility in those elite groups, it will not support my claim in my hypothesis. When I run a diagnosis on the count of students who are experiencing upward mobility, a positive significant coeficient (number) would indicate support for my hypothesis.
+
+
+## Visualization
 
 My chosen data set: https://doi.org/10.7910/DVN/RYLJKZ
 
@@ -62,9 +65,13 @@ first_graph <- ggplot(data = df, mapping = aes(x = elite_college,
 
 
 ```
+As shown by the graph above, we can see that the median income of parents for students who go to Extremely selective colleges is significantly higher than those that do no go to extremely selective colleges. What we have to understand, however, is that there are confounding variables to this data including that a parents income could either be combined from both spouses or just from one side of the family depending on family situations. With that said, some of the parental data might be scewed simply because there are condfounding variables including having a higher chance of a family reporting their income on a joint-basis. From this data, it is helping us solidify our hypothesis regarding the economic backgrounds that feed into extremely vs. not extremely selective universities.  
+
+
 
 
 ```{r}
+library(broom)
 df$kid_median <- as.numeric(df$kid_median)
 df <- df|>
   mutate(elite_college = if_else(V12 == "Ivy Plus", "Extremely Selective", "Not Extremely Selective"),
@@ -76,33 +83,51 @@ second_graph <- ggplot(data = df, mapping = aes(x = elite_college,
   labs(x = "Extremely Selective vs. Not Extremely Selective",
        y = "Median Salary of Kids After College") + theme_calc()
 second_graph 
+
+df_pivoted <- df %>%
+  pivot_wider(names_from = elite_college, values_from = kid_median)
+
+# Fit linear models for each group
+model_extremely_selective <- lm(`Extremely Selective` ~ mean_kid_median, data = df_pivoted)
+model_not_extremely_selective <- lm(`Not Extremely Selective` ~ mean_kid_median, data = df_pivoted) 
+
+
+# Summary of models
+summary_extremely_selective <- tidy(model_extremely_selective)
+summary_not_extremely_selective <- tidy(model_not_extremely_selective)
+
+
 ```
+As shown by the graph above, we can see that the median income of kids after college from Not Extremely Selective colleges is significantly lower than those from extremely selective colleges. Even though we may find this data to be extremely alarming, we can also see that there are many outliers that span further than the entire interquartile range of the college graduates from extremely selective colleges. From this data, on the flip side, is that we can see that children on average are making less than their parents regardless of what college they come from on average. 
+
+
 ```{r}
-library(tidyr)
-elite_college <- df |>
-   mutate(
-    elite_college = if_else(V12 == "Ivy Plus", "Extremely Selective", "Not Extremely Selective")
-  ) 
-tibble_output <- df |>
-
-  group_by(elite_college) |>
-  summarise(mean_kid_median = mean(kid_median, na.rm = TRUE),
-            mean_parent_median = mean(parent_median, na.rm = TRUE)) |>
-  pivot_wider(names_from = elite_college, values_from = c(mean_kid_median, mean_parent_median))
-
-tibble_output
+knitr::kable(summary_extremely_selective)
 ```
 
+The table above gives a better - more accurate - summary of what the graph was showing us as a bigger picture. The "estimate" column refers to the "Average Income" for those within extremely selective universities after graduation. As we can see, the table tells us that on average, the income for those graduating from extremely selective universities is $80,925 dollars per year.
+
+```{r}
+knitr::kable(summary_not_extremely_selective)
+```
+
+The table above gives a better - more accurate - summary of what the graph was showing us as a bigger picture. The "estimate" column refers to the "Average Income" for those within non-extremely selective universities after graduation. As we can see, the table tells us that on average, the income for those graduating from extremely selective universities is around $36,687 dollars per year.
+
+## Results
+
+As we can see from the graphs above, we can see that the average median for both the parents and children of students who went to "Extremely Selective" schools was relatively higher than those that did not go to an extremely selective college. With that said, however, we can also see that even though the students who were getting into these selective colleges, their return on income did not surpass that of their parents. This can firmly have us conclude that the intensity of the schools admission process does not generally assume you will be making more money than your parents in the end (positive economic mobility). 
+
+In terms of those that did not identify in the extremely selective category, the children were still seen to make less than their parents, but the concentration of outliers that did make more than their parents suggest that the chances of upward mobility is significantly higher for those that came from a poorer background. Throughout all this jargon, however, this information does not suggest that students should go to less selective colleges, it just shows that students that do attend these extremely selective schools have a much more harder time surpassing their parents' income solely because their parents are already economically successful. 
+
+Through the data we collected, we can firmly see that all the graphs and tables show that going to a highly selective university greatly increases your chances of a high income but not in the aspect that you make more than your parents. The main variable of interest was seeing the income of college graduates (kid_mean) after they left college. With this information, it allows us to come to a conclusion regarding our hypothesis on social mobility after graduating college from a selective college and non-selective college. 
 
 
-Discussion for Milestone 4
-
-As we can see from the graphs above, we can see that the average median for both the parents and children of students who went to "Extremely Selective" schools was relatively higher than those that did not go to an extremely selective college. With that said, however, we can also see that even though the students who were getting into these selective colleges, their return on income did not surpass that of their parents. This can firmly have us conclude that the intensity of the schools admission process does not generally assume you will be making more money than your parents in the end (positive economic mobility). In terms of those that did not identify in the extremely selective category, the children were still seen to make less than their parents, but the concentration of outliers that did make more than their parents suggest that the chances of upward mobility is significantly higher for those that came from a poorer background. Throughout all this jargon, however, this information does not suggest that students should go to less selective colleges, it just shows that students that do attend these extremely selective schools have a much more harder time surpassing their parents' income solely because their parents are already economically successful. 
 
 
+## Conclusion
 
 
-
+The thorough analysis encompassing both visual representations and statistical data provides  insights into the intricate correlation between attending highly selective universities and post-graduate income prospects. On average, graduates from extremely selective institutions showcase a substantially higher annual income of $80,925 in contrast to their peers from non-selective colleges, who demonstrate an average income of approximately $36,687 yearly. Despite the evident economic advantage for individuals from highly selective schools, a closer examination reveals that these students often do not surpass their parents' income levels, questioning the direct association between attending prestigious institutions and achieving superior economic status compared to their parents (positive economic mobility). In contrast, students from less selective colleges, although generally earning less, display a noticeable cluster of outliers exceeding their parents' income, suggesting a pronounced probability of upward mobility, particularly for individuals from disadvantaged economic backgrounds. This data underscores the dichotomy: attending highly selective universities significantly augments post-graduate income potential but does not ensure surpassing parental income levels (positive upward mobility), underscoring the multifaceted interplay of familial, societal, and economic factors beyond the mere act of college enrollment in shaping an individuals financial trajectory. With that said, I can say that there are many confounding variables that can skew data in certain ways that may make it appear that students graduating from extremely selective schools are actually doing better than those that are not from these selective schools. One confounding variable in particular is that the parents data could be skewed due to the fact that some parents may have reported the data under a "joint" status meaning that the real individual income of each parent would be what is presented divided in half. Conversely, that would lead me to reject the null hypothesis of attending an extremely selective college means that a post-grads chances of absolute upward mobility would be higher than those of non-selective colleges. Due to the fact that there was no way of differentiating parents, it was impossible to get an accurate data count as to how much parents made annually (individually). If I had more time or money to do research on this final project, I would love to figure out a way to gather sample data myself and turn it into code to see more accurate data across the board. Regardless, I feel that I have done the best job that I could have done for this final project and I am extremely proud of my results. 
 
 
 

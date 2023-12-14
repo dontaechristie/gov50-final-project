@@ -115,7 +115,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-4-1.png","index_files/figure-html5/unnamed-chunk-5-1.png","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.24/header-attrs.js","index_files/header-attrs-2.25/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-4-1.png","index_files/figure-html5/unnamed-chunk-5-1.png","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.24/header-attrs.js","index_files/header-attrs-2.25/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/kePrint-0.0.1/kePrint.js","index_files/lightable-0.0.1/lightable.css","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1546,6 +1546,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h2 id="introduction">Introduction</h2>
 <p>Throughout my high school career, I have always been facinated at the idea of exploring data related to the chances of upward mobility from students in elite higher education universities, including Harvard University. In the case where I can study this type of information now being a Harvard student, I seek to include data relating to students socioeconomic status prior to arriving a college, and this can also raise more questions regarding the idea of a “higher bracket” in moving up the economic ladder in these prestigious universities. Are these students pressured to do more than their parents who are already well off? Are students identifying as first generational low income at an equal chance of high upward mobility than those who came from a family of generational wealth? I strive to solve all of these raising questions through using R and the data presented in the program.</p>
 <p>Do your chances of upward mobility increase as the rank and tier of college rises in prestige? In this study, I intend to dive deep into the realm that determines a students outcome for social mobility. What does determine your economic outcome? I hypothesize that as we look further into the spectrum in which colleges become “more elite,” we will find that their overall social mobility statistics will feature a distinct trend in which it stays stagnant due to many students already coming from wealthy backgrounds in the beginning. While the topic of social mobility between elite and lower tiered universities is widely perceived to be different, I will be taking a different approach in which I will examine whether a students chances within an elite college institution for upward mobility is higher than it would be in lower tiered universities. My sample will be comprised of elite colleges which will include the Ivy league colleges, Stanford University, and the Massachusetts Institute of Technology (MIT) and other colleges deemed “extremely selective” according to the code. On the flip side, it will include brief data on lower tiered state schools from around the country that are deemed to be “Not Selective” according to the code. My explanatory variable of interest is whether there is upward mobility in my chosen elite colleges or if there is little to no upward mobility. The variable is code = 1 for those experiencing upward mobility and =0 with those with little to no upward mobility. My outcome variable is how many students came out of elite universities with upward economic mobility, so in the event the code is =135, that would mean that 135 students came out of the universities with upward mobility. This variable will be measured by a data set from Raj Chetty on “Income Segregation and Intergenerational Mobility Across Colleges in the United States.” If I discover stagnant numbers in students with little to no upward mobility in elite universities, this will support my hypothesis’s claim. If, on the other hand, I observe more upward mobility in those elite groups, it will not support my claim in my hypothesis. When I run a diagnosis on the count of students who are experiencing upward mobility, a positive significant coeficient (number) would indicate support for my hypothesis.</p>
+<h2 id="visualization">Visualization</h2>
 <p>My chosen data set: <a href="https://doi.org/10.7910/DVN/RYLJKZ" class="uri">https://doi.org/10.7910/DVN/RYLJKZ</a></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -1585,24 +1586,110 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <p><img src="index_files/figure-html5/unnamed-chunk-4-1.png" width="624" /></p>
 </div>
+<p>As shown by the graph above, we can see that the median income of parents for students who go to Extremely selective colleges is significantly higher than those that do no go to extremely selective colleges. What we have to understand, however, is that there are confounding variables to this data including that a parents income could either be combined from both spouses or just from one side of the family depending on family situations. With that said, some of the parental data might be scewed simply because there are condfounding variables including having a higher chance of a family reporting their income on a joint-basis. From this data, it is helping us solidify our hypothesis regarding the economic backgrounds that feed into extremely vs. not extremely selective universities.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>df</span><span class='op'>$</span><span class='va'>kid_median</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>df</span><span class='op'>$</span><span class='va'>kid_median</span><span class='op'>)</span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://broom.tidymodels.org/'>broom</a></span><span class='op'>)</span></span>
+<span><span class='va'>df</span><span class='op'>$</span><span class='va'>kid_median</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>df</span><span class='op'>$</span><span class='va'>kid_median</span><span class='op'>)</span></span>
 <span><span class='va'>df</span> <span class='op'>&lt;-</span> <span class='va'>df</span><span class='op'>|&gt;</span></span>
 <span>  <span class='fu'><a href='https://rdrr.io/pkg/plyr/man/mutate.html'>mutate</a></span><span class='op'>(</span>elite_college <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/if_else.html'>if_else</a></span><span class='op'>(</span><span class='va'>V12</span> <span class='op'>==</span> <span class='st'>"Ivy Plus"</span>, <span class='st'>"Extremely Selective"</span>, <span class='st'>"Not Extremely Selective"</span><span class='op'>)</span>,</span>
 <span>         mean_kid_median <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>kid_median</span>,na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span> </span>
 <span></span>
 <span><span class='va'>second_graph</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>df</span>, mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>elite_college</span>,</span>
 <span>                                  y <span class='op'>=</span> <span class='va'>kid_median</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_boxplot.html'>geom_boxplot</a></span><span class='op'>(</span>color<span class='op'>=</span><span class='st'>"pink"</span>, fill<span class='op'>=</span><span class='st'>"lightblue"</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_boxplot.html'>geom_boxplot</a></span><span class='op'>(</span>color<span class='op'>=</span><span class='st'>"black"</span>, fill<span class='op'>=</span><span class='st'>"lightgreen"</span><span class='op'>)</span> <span class='op'>+</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Extremely Selective vs. Not Extremely Selective"</span>,</span>
-<span>       y <span class='op'>=</span> <span class='st'>"Median Salary of Kids After College"</span><span class='op'>)</span></span>
+<span>       y <span class='op'>=</span> <span class='st'>"Median Salary of Kids After College"</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/pkg/ggthemes/man/theme_calc.html'>theme_calc</a></span><span class='op'>(</span><span class='op'>)</span></span>
 <span><span class='va'>second_graph</span> </span></code></pre>
 </div>
-<p><img src="index_files/figure-html5/unnamed-chunk-5-1.png" width="624" /></p>
+<img src="index_files/figure-html5/unnamed-chunk-5-1.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>df_pivoted</span> <span class='op'>&lt;-</span> <span class='va'>df</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span>  <span class='fu'><a href='https://tidyr.tidyverse.org/reference/pivot_wider.html'>pivot_wider</a></span><span class='op'>(</span>names_from <span class='op'>=</span> <span class='va'>elite_college</span>, values_from <span class='op'>=</span> <span class='va'>kid_median</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='co'># Fit linear models for each group</span></span>
+<span><span class='va'>model_extremely_selective</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>`Extremely Selective`</span> <span class='op'>~</span> <span class='va'>mean_kid_median</span>, data <span class='op'>=</span> <span class='va'>df_pivoted</span><span class='op'>)</span></span>
+<span><span class='va'>model_not_extremely_selective</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>`Not Extremely Selective`</span> <span class='op'>~</span> <span class='va'>mean_kid_median</span>, data <span class='op'>=</span> <span class='va'>df_pivoted</span><span class='op'>)</span> </span>
+<span></span>
+<span></span>
+<span><span class='co'># Summary of models</span></span>
+<span><span class='va'>summary_extremely_selective</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://generics.r-lib.org/reference/tidy.html'>tidy</a></span><span class='op'>(</span><span class='va'>model_extremely_selective</span><span class='op'>)</span></span>
+<span><span class='va'>summary_not_extremely_selective</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://generics.r-lib.org/reference/tidy.html'>tidy</a></span><span class='op'>(</span><span class='va'>model_not_extremely_selective</span><span class='op'>)</span></span></code></pre>
 </div>
-<p>Discussion for Milestone 4</p>
-<p>As we can see from the graphs above, we can see that the average median for both the parents and children of students who went to “Extremely Selective” schools was relatively higher than those that did not go to an extremely selective college. With that said, however, we can also see that even though the students who were getting into these selective colleges, their return on income did not surpass that of their parents. This can firmly have us conclude that the intensity of the schools admission process does not generally assume you will be making more money than your parents in the end (positive economic mobility). In terms of those that did not identify in the extremely selective category, the children were still seen to make less than their parents, but the concentration of outliers that did make more than their parents suggest that the chances of upward mobility is significantly higher for those that came from a poorer background. Throughout all this jargon, however, this information does not suggest that students should go to less selective colleges, it just shows that students that do attend these extremely selective schools have a much more harder time surpassing their parents’ income solely because their parents are already economically successful.</p>
+</div>
+<p>As shown by the graph above, we can see that the median income of kids after college from Not Extremely Selective colleges is significantly lower than those from extremely selective colleges. Even though we may find this data to be extremely alarming, we can also see that there are many outliers that span further than the entire interquartile range of the college graduates from extremely selective colleges. From this data, on the flip side, is that we can see that children on average are making less than their parents regardless of what college they come from on average.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span><span class='va'>summary_extremely_selective</span><span class='op'>)</span></span></code></pre>
+</div>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">term</th>
+<th style="text-align: right;">estimate</th>
+<th style="text-align: right;">std.error</th>
+<th style="text-align: right;">statistic</th>
+<th style="text-align: right;">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">80925</td>
+<td style="text-align: right;">3044.422</td>
+<td style="text-align: right;">26.5814</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">mean_kid_median</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The table above gives a better - more accurate - summary of what the graph was showing us as a bigger picture. The “estimate” column refers to the “Average Income” for those within extremely selective universities after graduation. As we can see, the table tells us that on average, the income for those graduating from extremely selective universities is $80,925 dollars per year.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span><span class='va'>summary_not_extremely_selective</span><span class='op'>)</span></span></code></pre>
+</div>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">term</th>
+<th style="text-align: right;">estimate</th>
+<th style="text-align: right;">std.error</th>
+<th style="text-align: right;">statistic</th>
+<th style="text-align: right;">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">36687.33</td>
+<td style="text-align: right;">265.713</td>
+<td style="text-align: right;">138.0713</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">mean_kid_median</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The table above gives a better - more accurate - summary of what the graph was showing us as a bigger picture. The “estimate” column refers to the “Average Income” for those within non-extremely selective universities after graduation. As we can see, the table tells us that on average, the income for those graduating from extremely selective universities is around $36,687 dollars per year.</p>
+<h2 id="results">Results</h2>
+<p>As we can see from the graphs above, we can see that the average median for both the parents and children of students who went to “Extremely Selective” schools was relatively higher than those that did not go to an extremely selective college. With that said, however, we can also see that even though the students who were getting into these selective colleges, their return on income did not surpass that of their parents. This can firmly have us conclude that the intensity of the schools admission process does not generally assume you will be making more money than your parents in the end (positive economic mobility).</p>
+<p>In terms of those that did not identify in the extremely selective category, the children were still seen to make less than their parents, but the concentration of outliers that did make more than their parents suggest that the chances of upward mobility is significantly higher for those that came from a poorer background. Throughout all this jargon, however, this information does not suggest that students should go to less selective colleges, it just shows that students that do attend these extremely selective schools have a much more harder time surpassing their parents’ income solely because their parents are already economically successful.</p>
+<p>Through the data we collected, we can firmly see that all the graphs and tables show that going to a highly selective university greatly increases your chances of a high income but not in the aspect that you make more than your parents. The main variable of interest was seeing the income of college graduates (kid_mean) after they left college. With this information, it allows us to come to a conclusion regarding our hypothesis on social mobility after graduating college from a selective college and non-selective college.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>The thorough analysis encompassing both visual representations and statistical data provides insights into the intricate correlation between attending highly selective universities and post-graduate income prospects. On average, graduates from extremely selective institutions showcase a substantially higher annual income of $80,925 in contrast to their peers from non-selective colleges, who demonstrate an average income of approximately $36,687 yearly. Despite the evident economic advantage for individuals from highly selective schools, a closer examination reveals that these students often do not surpass their parents’ income levels, questioning the direct association between attending prestigious institutions and achieving superior economic status compared to their parents (positive economic mobility). In contrast, students from less selective colleges, although generally earning less, display a noticeable cluster of outliers exceeding their parents’ income, suggesting a pronounced probability of upward mobility, particularly for individuals from disadvantaged economic backgrounds. This data underscores the dichotomy: attending highly selective universities significantly augments post-graduate income potential but does not ensure surpassing parental income levels (positive upward mobility), underscoring the multifaceted interplay of familial, societal, and economic factors beyond the mere act of college enrollment in shaping an individuals financial trajectory. With that said, I can say that there are many confounding variables that can skew data in certain ways that may make it appear that students graduating from extremely selective schools are actually doing better than those that are not from these selective schools. One confounding variable in particular is that the parents data could be skewed due to the fact that some parents may have reported the data under a “joint” status meaning that the real individual income of each parent would be what is presented divided in half. Conversely, that would lead me to reject the null hypothesis of attending an extremely selective college means that a post-grads chances of absolute upward mobility would be higher than those of non-selective colleges. Due to the fact that there was no way of differentiating parents, it was impossible to get an accurate data count as to how much parents made annually (individually). If I had more time or money to do research on this final project, I would love to figure out a way to gather sample data myself and turn it into code to see more accurate data across the board. Regardless, I feel that I have done the best job that I could have done for this final project and I am extremely proud of my results.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
